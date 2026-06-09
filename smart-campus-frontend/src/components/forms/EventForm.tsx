@@ -47,7 +47,7 @@ export const EventForm = ({ onSuccess, onCancel, initialData }: any) => {
       id: 'club_id', 
       label: 'Associated Club', 
       type: 'select', 
-      options: clubs.map(c => ({ value: c.id.toString(), label: c.name })) 
+      options: clubs.map((c) => ({ value: c.id.toString(), label: c.name })) 
     },
     { id: 'start_time', label: 'Start Time', type: 'datetime-local', required: true },
     { id: 'end_time', label: 'End Time', type: 'datetime-local', required: true },
