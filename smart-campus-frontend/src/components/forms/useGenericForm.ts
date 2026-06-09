@@ -1,6 +1,4 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { toast } from 'sonner';
 import { extractZodErrors, extractApiErrors, mergeErrors } from '@/lib/errorHandling';
@@ -21,7 +19,7 @@ export const useGenericForm = (
   );
   const [isLoading, setIsLoading] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
-  // const abortControllerRef = useRef<AbortController | null>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
 
   // Client-side inline errors (per-field, shown after touch)
   const [inlineErrors, setInlineErrors] = useState<Record<string, string>>({});
@@ -212,7 +210,7 @@ export const useGenericForm = (
         setIsLoading(false);
       }
     },
-    [fields, formData, schema, service, initialData, onSuccess, customSubmitHandler, handleApiError]
+    [fields, formData, schema, service, initialData, onSuccess, customSubmitHandler]
   );
 
   const handleSubmitError = (error: unknown) => {
